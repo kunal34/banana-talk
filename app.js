@@ -9,6 +9,11 @@ function addText(text) {
     return url + '?' + 'text=' + text;
 }
 
+function errorHandler(error) {
+    console.log(error);
+    alert("Something wrong with the server :(\nPlease try again after sometime")
+}
+
 function clickHandler() {
 
     var inputText = inputBox.value;
@@ -16,7 +21,8 @@ function clickHandler() {
   
     fetch(urlTxt)
         .then(response => response.json())
-        .then(json => outputBox.innerHTML = json.contents.translated);
+        .then(json => outputBox.innerHTML = json.contents.translated)
+        .catch(errorHandler)
 }
 
 btnTranslate.addEventListener('click', clickHandler);
